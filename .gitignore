@@ -1,0 +1,33 @@
+# Virtual environment
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+*.cover
+.hypothesis/
+
+# Jenkins
+jenkins_home/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Reports
+reports/
+*.html
+screenshots/
