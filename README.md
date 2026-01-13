@@ -3,7 +3,7 @@
 ![Tests](https://img.shields.io/badge/Tests-8%20passing-brightgreen)
 ![Python](https://img.shields.io/badge/Python-3.13-blue)
 ![Pytest](https://img.shields.io/badge/Pytest-7.4.3-red)
-![Jenkins](https://img.shields.io/badge/Jenkins-2.528.3-red)
+![Jenkins](https://img.shields.io/badge/Jenkins-LTS-red)
 ![Docker](https://img.shields.io/badge/Docker-Compose-blue)
 
 Professional CI/CD automation pipeline using Jenkins and Python pytest for automated testing.
@@ -18,13 +18,13 @@ Complete Jenkins CI/CD pipeline demonstrating automated testing workflow with Py
 - Python pytest integration
 - HTML test reports generation
 - Docker containerization
-- GitHub integration with SCM polling
+- GitHub integration for manual triggering
 - 8 automated test cases (100% passing)
 - Professional pipeline stages
 
 ## Tech Stack
 
-- **CI/CD:** Jenkins 2.528.3 (Docker)
+- **CI/CD:** Jenkins LTS (Docker)
 - **Testing:** Python 3.13 + Pytest 7.4.3
 - **Reporting:** pytest-html 4.1.1
 - **Version Control:** Git + GitHub
@@ -85,6 +85,8 @@ docker exec -u root jenkins-cicd apt-get install -y python3 python3-pip
 docker exec jenkins-cicd python3 --version
 ```
 
+**Note:** The `--break-system-packages` flag is used in the Jenkinsfile due to Debian-based package management restrictions in the Jenkins container. This is required for installing Python packages in the system Python environment.
+
 ## Pipeline Configuration
 
 ### Create New Pipeline
@@ -100,11 +102,12 @@ docker exec jenkins-cicd python3 --version
 
 ### Pipeline Stages
 ```groovy
-1. Checkout         - Clone repository from GitHub
-2. Setup Python     - Verify Python installation
-3. Install Dependencies - Install pytest and requirements
-4. Run Tests        - Execute 8 automated tests
-5. Archive Results  - Save HTML reports
+1. Checkout                - Clone repository from GitHub
+2. Setup Python            - Verify Python installation
+3. Install Dependencies    - Install pytest and requirements
+4. Setup Reports Directory - Create reports folder
+5. Run Tests               - Execute 8 automated tests
+6. Archive Results         - Save HTML reports
 ```
 
 ## Running the Pipeline
@@ -116,9 +119,10 @@ Jenkins Dashboard → QA_Jenkins_Pipeline → Build Now
 
 ### Automatic Execution
 
-Pipeline runs automatically when:
-- Code is pushed to GitHub (with SCM polling)
-- Manual trigger via "Build Now"
+Pipeline can be triggered:
+- Manually via "Build Now" button
+- Via webhook configuration (optional)
+- Via SCM polling (optional, requires additional configuration)
 
 ## Test Results
 
@@ -187,6 +191,12 @@ pipeline {
             }
         }
         
+        stage('Setup Reports Directory') {
+            steps {
+                sh 'mkdir -p reports'
+            }
+        }
+        
         stage('Run Tests') {
             steps {
                 sh 'python3 -m pytest tests/ -v --html=reports/report.html --self-contained-html'
@@ -241,7 +251,7 @@ services:
 - Python test automation with pytest
 - Artifact archiving and reporting
 - Pipeline as Code (Jenkinsfile)
-- SCM polling and webhooks
+- Container-based development environments
 
 ## Troubleshooting
 
