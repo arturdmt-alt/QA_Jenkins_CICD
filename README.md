@@ -130,6 +130,21 @@ The Jenkins pipeline was executed successfully, running all automated tests usin
 - Result: 100% passing
 - Execution time: ~38 seconds
 
+### Test Coverage
+
+**TestBasicMath (4 tests):**
+-  test_addition
+-  test_subtraction
+-  test_multiplication
+-  test_division
+
+**TestStringOperations (4 tests):**
+-  test_string_concatenation
+-  test_string_upper
+-  test_string_lower
+-  test_string_length
+
+
 ### Jenkins Dashboard
 
 Overview of the Jenkins dashboard showing the pipeline status and build history:
@@ -143,16 +158,6 @@ Detailed view of the pipeline execution, including generated artifacts such as t
 ![Jenkins Pipeline Execution](docs/images/build-success.jpg)
 
 The HTML test report (`report.html`) is automatically generated and archived as a Jenkins artifact, allowing easy access to detailed test results after each build.
-
-## Screenshots
-
-### Jenkins Pipeline Dashboard
-![Jenkins Dashboard](docs/images/jenkins-dashboard.jpg)
-*Successful pipeline execution with archived HTML report*
-
-### Build Success
-![Build Success](docs/images/build-success.jpg)
-*Pipeline #1 completed successfully in 38 seconds*
 
 ## Jenkinsfile
 ```groovy
@@ -270,4 +275,3 @@ docker-compose stop
 
 - GitHub: [@arturdmt-alt](https://github.com/arturdmt-alt)
 - LinkedIn: [Artur Dmytriyev](https://www.linkedin.com/in/arturdmytriyev)
-
