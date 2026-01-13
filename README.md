@@ -122,32 +122,37 @@ Pipeline runs automatically when:
 
 ## Test Results
 
-**Test Execution:**
-- Platform: Linux (Docker)
-- Python: 3.13.5
-- Pytest: 7.4.3
-- Duration: ~38 seconds
-- Results: **8 passed (100%)**
+The Jenkins pipeline was executed successfully, running all automated tests using pytest.
 
-### Test Coverage
+**Execution summary:**
+- Pipeline status: SUCCESS
+- Total tests executed: 8
+- Result: 100% passing
+- Execution time: ~38 seconds
 
-**TestBasicMath (4 tests):**
--  test_addition
--  test_subtraction
--  test_multiplication
--  test_division
+### Jenkins Dashboard
 
-**TestStringOperations (4 tests):**
--  test_string_concatenation
--  test_string_upper
--  test_string_lower
--  test_string_length
+Overview of the Jenkins dashboard showing the pipeline status and build history:
 
-### Reports
+![Jenkins Dashboard](docs/images/jenkins-dashboard.jpg)
 
-HTML test reports are generated automatically and archived as artifacts:
-- Location: `reports/report.html`
-- Accessible via Jenkins build artifacts
+### Pipeline Execution Details
+
+Detailed view of the pipeline execution, including generated artifacts such as the HTML test report:
+
+![Jenkins Pipeline Execution](docs/images/build-success.jpg)
+
+The HTML test report (`report.html`) is automatically generated and archived as a Jenkins artifact, allowing easy access to detailed test results after each build.
+
+## Screenshots
+
+### Jenkins Pipeline Dashboard
+![Jenkins Dashboard](docs/images/jenkins-dashboard.jpg)
+*Successful pipeline execution with archived HTML report*
+
+### Build Success
+![Build Success](docs/images/build-success.jpg)
+*Pipeline #1 completed successfully in 38 seconds*
 
 ## Jenkinsfile
 ```groovy
