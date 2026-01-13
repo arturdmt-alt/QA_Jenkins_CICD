@@ -133,17 +133,16 @@ The Jenkins pipeline was executed successfully, running all automated tests usin
 ### Test Coverage
 
 **TestBasicMath (4 tests):**
--  test_addition
--  test_subtraction
--  test_multiplication
--  test_division
+- test_addition
+- test_subtraction
+- test_multiplication
+- test_division
 
 **TestStringOperations (4 tests):**
--  test_string_concatenation
--  test_string_upper
--  test_string_lower
--  test_string_length
-
+- test_string_concatenation
+- test_string_upper
+- test_string_lower
+- test_string_length
 
 ### Jenkins Dashboard
 
@@ -151,13 +150,17 @@ Overview of the Jenkins dashboard showing the pipeline status and build history:
 
 ![Jenkins Dashboard](docs/images/jenkins-dashboard.jpg)
 
-### Pipeline Execution Details
+### Pipeline Execution
 
-Detailed view of the pipeline execution, including generated artifacts such as the HTML test report:
+Jenkins main dashboard showing successful pipeline execution:
 
 ![Jenkins Pipeline Execution](docs/images/build-success.jpg)
 
-The HTML test report (`report.html`) is automatically generated and archived as a Jenkins artifact, allowing easy access to detailed test results after each build.
+**Build Results:**
+- Build #1: SUCCESS
+- Duration: 38 seconds
+- All 8 tests passed
+- HTML test report (report.html) automatically generated and archived as Jenkins artifact
 
 ## Jenkinsfile
 ```groovy
