@@ -101,14 +101,13 @@ docker exec jenkins-cicd python3 --version
 8. **Script Path:** `Jenkinsfile`
 
 ### Pipeline Stages
-```groovy
-1. Checkout                - Clone repository from GitHub
-2. Setup Python            - Verify Python installation
-3. Install Dependencies    - Install pytest and requirements
-4. Setup Reports Directory - Create reports folder
-5. Run Tests               - Execute 8 automated tests
-6. Archive Results         - Save HTML reports
-```
+
+1. Checkout - Clone repository from GitHub.
+2. Setup Python - Verify Python installation.
+3. Install Dependencies - Install requirements.
+4. Run Tests - Execute tests and generate an HTML report.
+
+At pipeline completion, `post -> always` archives available HTML reports, including when tests fail. If no report was generated, `allowEmptyArchive: true` prevents an additional archiving error.
 
 ## Running the Pipeline
 
@@ -170,49 +169,38 @@ Jenkins main dashboard showing successful pipeline execution:
 ```groovy
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-        
+
         stage('Setup Python') {
             steps {
                 sh 'python3 --version'
                 sh 'pip3 --version'
             }
         }
-        
+
         stage('Install Dependencies') {
             steps {
                 sh 'pip3 install --break-system-packages -r requirements.txt'
             }
         }
-        
-        stage('Setup Reports Directory') {
-            steps {
-                sh 'mkdir -p reports'
-            }
-        }
-        
+
         stage('Run Tests') {
             steps {
                 sh 'python3 -m pytest tests/ -v --html=reports/report.html --self-contained-html'
             }
         }
-        
-        stage('Archive Results') {
-            steps {
-                archiveArtifacts artifacts: 'reports/*.html', allowEmptyArchive: true
-            }
-        }
     }
-    
+
     post {
         always {
             echo 'Pipeline execution completed!'
+            archiveArtifacts artifacts: 'reports/*.html', allowEmptyArchive: true
         }
         success {
             echo 'All tests passed successfully!'
